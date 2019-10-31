@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Knowurteam\\Knowurteam.API\\Knowurteam.API.csproj": {}
+    "D:\\KYT\\Knowurteam\\Knowurteam.API\\Knowurteam.API.csproj": {}
   },
   "projects": {
-    "D:\\Knowurteam\\Knowurteam.API\\Knowurteam.API.csproj": {
+    "D:\\KYT\\Knowurteam\\Knowurteam.API\\Knowurteam.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Knowurteam\\Knowurteam.API\\Knowurteam.API.csproj",
+        "projectUniqueName": "D:\\KYT\\Knowurteam\\Knowurteam.API\\Knowurteam.API.csproj",
         "projectName": "Knowurteam.API",
-        "projectPath": "D:\\Knowurteam\\Knowurteam.API\\Knowurteam.API.csproj",
+        "projectPath": "D:\\KYT\\Knowurteam\\Knowurteam.API\\Knowurteam.API.csproj",
         "packagesPath": "C:\\Users\\EVA MARIA\\.nuget\\packages\\",
-        "outputPath": "D:\\Knowurteam\\Knowurteam.API\\obj\\",
+        "outputPath": "D:\\KYT\\Knowurteam\\Knowurteam.API\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

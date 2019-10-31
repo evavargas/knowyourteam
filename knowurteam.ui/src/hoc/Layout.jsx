@@ -1,5 +1,6 @@
 import React, {Fragment} from 'react';
 import Navigation from './../components/Navigation/Navigation';
+import Routes from './Routes';
 
 //componente funcional
 const Layout = () => {
@@ -7,9 +8,7 @@ const Layout = () => {
         <Fragment>
             <Navigation></Navigation>
             <main className='container'>
-                <div>
-                    Componente hijo
-                </div>
+                <Routes/>
             </main>
 
         </Fragment>    
