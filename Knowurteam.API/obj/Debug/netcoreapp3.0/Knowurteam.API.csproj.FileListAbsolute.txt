@@ -84,3 +84,11 @@ D:\KYT\Knowurteam\Knowurteam.API\obj\Debug\netcoreapp3.0\Knowurteam.API.RazorTar
 D:\KYT\Knowurteam\Knowurteam.API\obj\Debug\netcoreapp3.0\Knowurteam.API.csproj.CopyComplete
 D:\KYT\Knowurteam\Knowurteam.API\obj\Debug\netcoreapp3.0\Knowurteam.API.dll
 D:\KYT\Knowurteam\Knowurteam.API\obj\Debug\netcoreapp3.0\Knowurteam.API.pdb
+D:\KYT\Knowurteam\Knowurteam.API\bin\Debug\netcoreapp3.0\IdentityModel.dll
+D:\KYT\Knowurteam\Knowurteam.API\bin\Debug\netcoreapp3.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\KYT\Knowurteam\Knowurteam.API\bin\Debug\netcoreapp3.0\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\KYT\Knowurteam\Knowurteam.API\bin\Debug\netcoreapp3.0\Microsoft.IdentityModel.Logging.dll
+D:\KYT\Knowurteam\Knowurteam.API\bin\Debug\netcoreapp3.0\Microsoft.IdentityModel.Protocols.dll
+D:\KYT\Knowurteam\Knowurteam.API\bin\Debug\netcoreapp3.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+D:\KYT\Knowurteam\Knowurteam.API\bin\Debug\netcoreapp3.0\Microsoft.IdentityModel.Tokens.dll
+D:\KYT\Knowurteam\Knowurteam.API\bin\Debug\netcoreapp3.0\System.IdentityModel.Tokens.Jwt.dll

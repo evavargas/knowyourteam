@@ -5,6 +5,8 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssetes="All"/>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.2.4"/>
+    <PackageReference Include="IdentityModel" Version="4.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.2.4"/>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.0.0" />
   </ItemGroup>
 </Project>

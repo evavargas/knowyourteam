@@ -17,5 +17,6 @@ namespace Knowurteam.API.Models
         public string  LookingFor { get; set; }
         public string Interest  { get; set; }
         public string Company { get; set; }
+        public DateTime Created { get; set; }
     }
 }
