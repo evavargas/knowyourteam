@@ -25,8 +25,6 @@ namespace Knowurteam.API.Migrations
 
                     b.Property<DateTime>("Created");
 
-                    b.Property<DateTime>("DateIngress");
-
                     b.Property<DateTime>("DateofBirth");
 
                     b.Property<string>("Gender");
@@ -36,8 +34,6 @@ namespace Knowurteam.API.Migrations
                     b.Property<string>("Introduction");
 
                     b.Property<DateTime>("LastActive");
-
-                    b.Property<string>("LookingFor");
 
                     b.Property<string>("Occupation");
 

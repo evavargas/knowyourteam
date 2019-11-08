@@ -8,7 +8,7 @@ namespace Knowurteam.API.Dtos
         [Required]
         public string Username { get; set; }
 
-        [StringLength(8, MinimumLength = 4, ErrorMessage = "You must specify a password between 4 and 8 characters")]
+        [StringLength(10, MinimumLength = 4, ErrorMessage = "You must specify a password between 4 and 8 characters")]
         public string Password { get; set; }
 
         [Required]
@@ -17,9 +17,6 @@ namespace Knowurteam.API.Dtos
         [Required]
         public DateTime DateofBirth { get; set; }
         public string Occupation { get; set; }
-
-        [Required]
-        public DateTime DateIngress { get; set; }
         public DateTime Created { get; set; }
         public DateTime LastActive { get; set; }
 
@@ -27,7 +24,6 @@ namespace Knowurteam.API.Dtos
         {
             Created = DateTime.Now;
             LastActive = DateTime.Now;
-            DateIngress= DateTime.Now;
         }
     }
 

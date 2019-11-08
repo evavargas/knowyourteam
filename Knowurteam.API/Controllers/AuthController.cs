@@ -40,8 +40,7 @@ namespace Knowurteam.API.Controllers
                 Gender = userForRegisterDto.Gender,
                 Occupation=userForRegisterDto.Occupation,
                 Created = userForRegisterDto.Created,
-                LastActive = userForRegisterDto.LastActive,
-                DateIngress=userForRegisterDto.DateIngress
+                LastActive = userForRegisterDto.LastActive
             };
             // Retornamos un codigo de exito si todo salio bien
             var createdUser = await _repository.Register(userToCreate, userForRegisterDto.Password);

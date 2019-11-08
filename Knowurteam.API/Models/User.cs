@@ -11,10 +11,8 @@ namespace Knowurteam.API.Models
         public string Gender { get; set; }
         public DateTime DateofBirth { get; set; }
         public string Occupation { get; set; }
-        public DateTime DateIngress {get; set;}
         public DateTime LastActive { get; set; }
         public string  Introduction { get; set; }
-        public string  LookingFor { get; set; }
         public string Interest  { get; set; }
         public string Company { get; set; }
         public DateTime Created { get; set; }
