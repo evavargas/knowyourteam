@@ -93,3 +93,5 @@ D:\KYT\Knowurteam\Knowurteam.API\bin\Debug\netcoreapp3.0\Microsoft.IdentityModel
 D:\KYT\Knowurteam\Knowurteam.API\bin\Debug\netcoreapp3.0\Microsoft.IdentityModel.Tokens.dll
 D:\KYT\Knowurteam\Knowurteam.API\bin\Debug\netcoreapp3.0\System.IdentityModel.Tokens.Jwt.dll
 D:\KYT\Knowurteam\Knowurteam.API\bin\Debug\netcoreapp3.0\Data\Users.json
+D:\KYT\Knowurteam\Knowurteam.API\bin\Debug\netcoreapp3.0\AutoMapper.dll
+D:\KYT\Knowurteam\Knowurteam.API\bin\Debug\netcoreapp3.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll

@@ -3,9 +3,10 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using AutoMapper;
 using Knowurteam.API.Data;
-using Knowurteam.API.Models;
 using Knowurteam.API.Dtos;
+using Knowurteam.API.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
@@ -18,8 +19,10 @@ namespace Knowurteam.API.Controllers
     {
         private readonly IConfiguration _config;
         private readonly IAuthRepository _repository;
-        public AuthController(IAuthRepository repository, IConfiguration config)
+        private readonly IMapper _mapper;
+        public AuthController(IAuthRepository repository, IConfiguration config, IMapper mapper)
         {
+            this._mapper = mapper;
             this._repository = repository;
             this._config = config;
         }
@@ -33,19 +36,11 @@ namespace Knowurteam.API.Controllers
             if (await _repository.UserExists(userForRegisterDto.Username))
                 return BadRequest("Username already exists");
             // Crear nuestro usuario en el repositorio
-            var userToCreate = new User
-            {
-                Username = userForRegisterDto.Username,
-                DateofBirth = userForRegisterDto.DateofBirth,
-                Gender = userForRegisterDto.Gender,
-                Occupation=userForRegisterDto.Occupation,
-                Created = userForRegisterDto.Created,
-                LastActive = userForRegisterDto.LastActive
-            };
+            var userToCreate = _mapper.Map<User>(userForRegisterDto);
             // Retornamos un codigo de exito si todo salio bien
             var createdUser = await _repository.Register(userToCreate, userForRegisterDto.Password);
-
-            return Ok(createdUser);
+            var userToReturn = _mapper.Map<UserForDetailedDto>(createdUser);
+            return Ok(userToReturn);
         }
 
         [HttpPost("login")]
@@ -80,10 +75,11 @@ namespace Knowurteam.API.Controllers
             var tokenHandler = new JwtSecurityTokenHandler();
 
             var token = tokenHandler.CreateToken(tokenDescriptor);
-
+            var user = _mapper.Map<UserForListDto>(userFromRepo);
             return Ok(new
             {
-                token = tokenHandler.WriteToken(token)
+                token = tokenHandler.WriteToken(token),
+                user
             });
         }
     }
