@@ -1,5 +1,5 @@
 using System;
-
+using System.Collections.Generic;
 namespace Knowurteam.API.Models
 {
     public class User
@@ -13,7 +13,8 @@ namespace Knowurteam.API.Models
         public string Occupation { get; set; }
         public DateTime LastActive { get; set; }
         public string  Introduction { get; set; }
-        public string Interest  { get; set; }
+        public ICollection<Photo> Photos { get; set; }
+        public ICollection<Activity> Activities {get; set;}
         public string Company { get; set; }
         public DateTime Created { get; set; }
     }

@@ -9,14 +9,58 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Knowurteam.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20191108045705_modificacion en los campos de usuario")]
-    partial class modificacionenloscamposdeusuario
+    [Migration("20191111145703_AddModels")]
+    partial class AddModels
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.2.4-servicing-10062");
+
+            modelBuilder.Entity("Knowurteam.API.Models.Activity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("DateofRealization");
+
+                    b.Property<string>("Description");
+
+                    b.Property<DateTime>("RegistrationDate");
+
+                    b.Property<int>("UserId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Activities");
+                });
+
+            modelBuilder.Entity("Knowurteam.API.Models.Photo", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("DateAdded");
+
+                    b.Property<string>("Description");
+
+                    b.Property<bool>("IsMain");
+
+                    b.Property<string>("PublicId");
+
+                    b.Property<string>("Url");
+
+                    b.Property<int>("UserId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Photos");
+                });
 
             modelBuilder.Entity("Knowurteam.API.Models.User", b =>
                 {
@@ -30,8 +74,6 @@ namespace Knowurteam.API.Migrations
                     b.Property<DateTime>("DateofBirth");
 
                     b.Property<string>("Gender");
-
-                    b.Property<string>("Interest");
 
                     b.Property<string>("Introduction");
 
@@ -66,6 +108,22 @@ namespace Knowurteam.API.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Values");
+                });
+
+            modelBuilder.Entity("Knowurteam.API.Models.Activity", b =>
+                {
+                    b.HasOne("Knowurteam.API.Models.User", "user")
+                        .WithMany("Activities")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Knowurteam.API.Models.Photo", b =>
+                {
+                    b.HasOne("Knowurteam.API.Models.User", "User")
+                        .WithMany("Photos")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

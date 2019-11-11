@@ -36,6 +36,8 @@ namespace Knowurteam.API
             services.AddMvc(option => option.EnableEndpointRouting = false);
             //Para habilitar cors, urls distintas
             services.AddCors();
+            //Seed del Json que tiene users
+            services.AddTransient<Seed>();
             //el proveedor y el que lo implementa
             services.AddScoped<IAuthRepository, AuthRepository>();
             //Esquema Bearer(
@@ -53,7 +55,7 @@ namespace Knowurteam.API
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostEnvironment env, Seed seeder)
         {
             if (env.IsDevelopment())
             {
@@ -63,6 +65,8 @@ namespace Knowurteam.API
             {
                 //app.UseHsts();
             }
+            //carga de data al arrancar la aplicacion
+            //seeder.SeedUsers();
             //Cors entre 3000(ui) y 5000(api)
             app.UseCors(x=> x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             app.UseMvc();

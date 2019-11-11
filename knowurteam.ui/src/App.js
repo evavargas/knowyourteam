@@ -1,13 +1,32 @@
-import React, {Fragment} from 'react';
-import './App.css';
-import Layout from './hoc/Layout';
+import React, { Fragment, Component } from "react";
+import "./App.css";
+import { connect } from "react-redux";
 
-function App() {
-  return (
-    <Fragment>
-      <Layout></Layout>
-    </Fragment>
-  );
+import Layout from "./hoc/Layout";
+import * as actions from "./store/actions/actionsIndex";
+import auth from "./services/authService";
+
+class App extends Component {
+  componentDidMount() {
+    this.props.onTrySignUp();
+  }
+
+  render() {
+    return (
+      <Fragment>
+        <Layout />
+      </Fragment>
+    );
+  }
 }
 
-export default App;
+const mapDispatchToProps = dispatch => {
+  return {
+    onTrySignUp: () => dispatch(actions.trySignUp())
+  };
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(App);

@@ -1,13 +1,14 @@
 import React, { Fragment } from 'react';
 import Joi from 'joi-browser';
 import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import Form from '../UI/Form';
 import Calendar from 'react-calendar';
 import Button from '../UI/Button';
 import auth from '../../services/authService';
 import alertify from 'alertifyjs';
-///////////////////////////////////////////////////////////7
+import * as actions from '../../store/actions/actionsIndex';
 class Register extends Form {
   state = {
     date: new Date(),
@@ -32,7 +33,6 @@ class Register extends Form {
     gender: Joi.required(),
     occupation: Joi.string().label('Occupation'),
     dateOfBirth: Joi.any(),
-    dateOfIngress: Joi.any(),
     password: Joi.string()
       .min(4)
       .max(10)
@@ -58,17 +58,13 @@ class Register extends Form {
     user.gender = this.state.gender;
     user.dateOfBirth = this.state.date;
 
-    try {
-      // TODO : Registar nuevo usuario en BD
-      await auth.register(user);
-      alertify.success('The user was register');
-      //redireccion 
-      this.props.history.push('/members');
-      console.log('user', user);
-    } catch (error) {
-      alertify.error("The user already exists");
-    }
+    this.props.onRegisterUser(user).then(() => {
+      const { error, history } = this.props;
+      if (!error) history.push('/members');
+    });
+    this.props.history.push('/members');
   };
+
 
   render() {
     return (
@@ -152,4 +148,21 @@ class Register extends Form {
   }
 }
 
-export default withRouter(Register);
+const mapStateToProps = state => {
+  return {
+    error: state.auth.error
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onRegisterUser: user => dispatch(actions.registerUser(user))
+  };
+};
+
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(Register)
+);
