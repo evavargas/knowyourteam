@@ -27,7 +27,7 @@ namespace Knowurteam.API.Migrations
 
                     b.Property<DateTime>("RegistrationDate");
 
-                    b.Property<int>("UserId");
+                    b.Property<int?>("UserId");
 
                     b.HasKey("Id");
 
@@ -110,10 +110,9 @@ namespace Knowurteam.API.Migrations
 
             modelBuilder.Entity("Knowurteam.API.Models.Activity", b =>
                 {
-                    b.HasOne("Knowurteam.API.Models.User", "user")
+                    b.HasOne("Knowurteam.API.Models.User", "User")
                         .WithMany("Activities")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("Knowurteam.API.Models.Photo", b =>

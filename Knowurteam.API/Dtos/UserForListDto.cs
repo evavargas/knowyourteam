@@ -1,5 +1,6 @@
 using System;
-
+using System.Collections.Generic;
+//este es el que sale en el JSON
 namespace Knowurteam.API.Dtos
 {
     public class UserForListDto
@@ -10,7 +11,7 @@ namespace Knowurteam.API.Dtos
         public int Age { get; set; }
         public DateTime Created { get; set; }
         public DateTime LastActive { get; set; }
-        public string PhotoUrl { get; set; }
-        //TODO: agregar activities
+        public string PhotoUrl { get; set; 
+        }
     }
 }

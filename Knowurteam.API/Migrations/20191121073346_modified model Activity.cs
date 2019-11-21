@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Knowurteam.API.Migrations
 {
-    public partial class AddModels : Migration
+    public partial class modifiedmodelActivity : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -51,7 +51,7 @@ namespace Knowurteam.API.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    UserId = table.Column<int>(nullable: false),
+                    UserId = table.Column<int>(nullable: true),
                     DateofRealization = table.Column<DateTime>(nullable: false),
                     RegistrationDate = table.Column<DateTime>(nullable: false),
                     Description = table.Column<string>(nullable: true)
@@ -64,7 +64,7 @@ namespace Knowurteam.API.Migrations
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(

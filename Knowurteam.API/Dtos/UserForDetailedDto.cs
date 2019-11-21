@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-
 namespace Knowurteam.API.Dtos
 {
     public class UserForDetailedDto

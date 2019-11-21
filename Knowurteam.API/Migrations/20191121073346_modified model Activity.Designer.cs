@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Knowurteam.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20191111145703_AddModels")]
-    partial class AddModels
+    [Migration("20191121073346_modified model Activity")]
+    partial class modifiedmodelActivity
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -29,7 +29,7 @@ namespace Knowurteam.API.Migrations
 
                     b.Property<DateTime>("RegistrationDate");
 
-                    b.Property<int>("UserId");
+                    b.Property<int?>("UserId");
 
                     b.HasKey("Id");
 
@@ -112,10 +112,9 @@ namespace Knowurteam.API.Migrations
 
             modelBuilder.Entity("Knowurteam.API.Models.Activity", b =>
                 {
-                    b.HasOne("Knowurteam.API.Models.User", "user")
+                    b.HasOne("Knowurteam.API.Models.User", "User")
                         .WithMany("Activities")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("Knowurteam.API.Models.Photo", b =>

@@ -6,9 +6,7 @@ namespace Knowurteam.API.Dtos
     public class UserForUpdateDto
     {
         public string Introduction { get; set; }
-//TODO REVISAR
-        public ICollection<ActivityForUpdateDto> Activity {get; set;}
+        public ICollection<Activity> Activities {get; set;}
 
-        //Falta fotos y actividades
     }
 }
