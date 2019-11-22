@@ -23,10 +23,11 @@ namespace Knowurteam.API.Data
         {
             return await _context.SaveChangesAsync() > 0;
         }
-
+//agarro del context photos y activities para retornar el usuario
         public async Task<User> GetUser(int id)
         {
-            var user = await _context.Users.Include(p => p.Photos).FirstOrDefaultAsync(u => u.Id == id);
+            var user = await _context.Users.Include(p => p.Photos).Include(
+                p => p.Activities).FirstOrDefaultAsync(u => u.Id == id);
             return user;
         }
         public async Task<Photo> GetPhoto(int id)
@@ -37,5 +38,10 @@ namespace Knowurteam.API.Data
         {
             return await _context.Photos.Where(u => u.UserId == userId).FirstOrDefaultAsync(p => p.IsMain);
         }
+        /*
+        var user = await _context.Users.Include(p => p.Photos).
+        Include(p=> p.Activities).FirstOrDefaultAsync(u => u.Id == id);
+        return user;
+        */
     }
 }

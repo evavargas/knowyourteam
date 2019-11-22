@@ -26,6 +26,7 @@ namespace Knowurteam.API.Helpers
             {
                 opt.MapFrom(d => d.DateofBirth.CalculateAge());
             });
+            
             CreateMap<UserForRegisterDto, User>();
             CreateMap<UserForUpdateDto, User>();
             CreateMap<Photo, PhotosForDetailedDto>();

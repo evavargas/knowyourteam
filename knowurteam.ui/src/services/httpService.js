@@ -1,8 +1,17 @@
 import axios from 'axios';
-//custom instance default
-const httpService= axios.create({
-    //ruta de nuestra API
-    baseURL: 'http://localhost:5000/api'
+
+const httpService = axios.create({
+  baseURL: 'http://localhost:5000/api'
 });
 
-export default httpService;
+function setJwt(jwt) {
+  httpService.defaults.headers.common['Authorization'] = 'Bearer ' + jwt;
+}
+
+export default {
+  get: httpService.get,
+  post: httpService.post,
+  put: httpService.put,
+  delete: httpService.delete,
+  setJwt
+};

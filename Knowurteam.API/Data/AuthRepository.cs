@@ -1,7 +1,6 @@
 using System.Threading.Tasks;
 using Knowurteam.API.Models;
 using Microsoft.EntityFrameworkCore;
-
 namespace Knowurteam.API.Data
 {
     public class AuthRepository : IAuthRepository
@@ -13,7 +12,7 @@ namespace Knowurteam.API.Data
         }
         public async Task<User> Login(string username, string password)
         {
-            var user = await _context.Users.FirstOrDefaultAsync(u => u.Username == username);
+            var user = await _context.Users.Include(p=>p.Photos).FirstOrDefaultAsync(u => u.Username == username);
 
             if (user == null)
                 return null;
@@ -21,10 +20,8 @@ namespace Knowurteam.API.Data
             //Verificar el usuario y password
             if (!VerifyPasswordHash(password, user.PasswordHash, user.PasswordSalt))
                 return null;
-
             return user;
         }
-
         private bool VerifyPasswordHash(string password, byte[] passwordHash, byte[] passwordSalt)
         {
             using (var hmac = new System.Security.Cryptography.HMACSHA512(passwordSalt))
@@ -38,24 +35,20 @@ namespace Knowurteam.API.Data
             }
             return true;
         }
-
         public async Task<User> Register(User user, string password)
         {
             byte[] passwordHash, passwordSalt;
 
             // Crear el password hash
             CreatePasswordHash(password, out passwordHash, out passwordSalt);
-
             user.PasswordHash = passwordHash;
             user.PasswordSalt = passwordSalt;
             // Agregar el objeto al contexto
             await _context.AddAsync(user);
             // Realizar el guardado en nuestro repositorio(Base de Datos)
             await _context.SaveChangesAsync();
-
             return user;
         }
-
         private void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
         {
             using (var hmac = new System.Security.Cryptography.HMACSHA512())
@@ -64,7 +57,6 @@ namespace Knowurteam.API.Data
                 passwordHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
             }
         }
-
         public async Task<bool> UserExists(string username)
         {
             if (await _context.Users.AnyAsync(u => u.Username == username))

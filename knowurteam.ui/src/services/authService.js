@@ -3,12 +3,14 @@ import jwtDecode from 'jwt-decode';
 
 const apiEndPoint = '/auth';
 const tokenKey = 'token';
+const userKey = 'user';
 
 export async function login(model) {
-  //   const { data: credentials } = await http.post(apiEndPoint + '/login', model);
   const { data: credentials } = await http.post(`${apiEndPoint}/login`, model);
   if (credentials) {
     localStorage.setItem(tokenKey, credentials.token);
+    localStorage.setItem(userKey, JSON.stringify(credentials.user));
+    http.setJwt(getJwt());
   }
   return credentials;
 }
@@ -20,10 +22,13 @@ export function trySignUp() {
     const token = getJwt();
     if (token) {
       const decodedToken = getDecodedToken();
-      credentials = {
+      const currentUser = JSON.parse(getCurrentUser());
+      const credentials = {
         token,
-        decodedToken
+        decodedToken,
+        currentUser
       };
+      http.setJwt(getJwt());
     }
   } catch (error) {
     return null;
@@ -48,12 +53,25 @@ export function getDecodedToken() {
   }
 }
 
+export function getCurrentUser() {
+  try {
+    return getLocalStorageItem(userKey);
+  } catch (error) {
+    return null;
+  }
+}
+
 export function register(user) {
   return http.post(`${apiEndPoint}/register`, user);
 }
 
+export function setCurrentUser(user) {
+  localStorage.setItem(userKey, JSON.stringify(user));
+}
+
 export function logout() {
   localStorage.removeItem(tokenKey);
+  localStorage.removeItem(userKey);
 }
 
 export default {
@@ -62,5 +80,6 @@ export default {
   getDecodedToken,
   logout,
   getJwt,
-  trySignUp
+  trySignUp,
+  setCurrentUser
 };
