@@ -25,7 +25,7 @@ class Navigation extends Component {
   };
 
   render() {
-    const { isAuthenticated, decodedToken, logout } = this.props;
+    const { isAuthenticated, decodedToken, logout, currentUser } = this.props;
     const { dropdownOpen } = this.state;
     let toolbarMenu = null;
     if (isAuthenticated) {
@@ -48,13 +48,18 @@ class Navigation extends Component {
     let userInfoArea = isAuthenticated ? (
       <div className="dropdown">
         <ButtonDropdown isOpen={dropdownOpen} toggle={this.toogleHandler}>
+          <img src={currentUser.photoUrl
+          ? currentUser.photoUrl 
+          : require('../../assets/user.png')}
+           alt={currentUser&& currentUser.username}/>
           <DropdownToggle caret color="primary">
             Welcome {decodedToken.unique_name}
           </DropdownToggle>
           <DropdownMenu>
-            <DropdownItem>
+            <DropdownItem tag={NavLinkRouter} exact to="/member/edit">
               <i className="fa fa-user"></i>Edit Profile
             </DropdownItem>
+            <DropdownItem  divider />
             <DropdownItem onClick={logout}>
               <i className="fa fa-sign-out"></i>Logout
             </DropdownItem>

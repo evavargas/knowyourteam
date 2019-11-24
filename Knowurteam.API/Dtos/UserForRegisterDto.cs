@@ -14,6 +14,7 @@ namespace Knowurteam.API.Dtos
         [Required]
         public DateTime DateofBirth { get; set; }
         public string Occupation { get; set; }
+        public string Company { get; set; }
         public DateTime Created { get; set; }
         public DateTime LastActive { get; set; }
         public UserForRegisterDto()

@@ -14,10 +14,11 @@ import 'bootswatch/dist/cyborg/bootstrap.min.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import authReducer from './store/reducers/auth';
+import userReducer from './store/reducers/users';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const rootReducer = combineReducers({ auth: authReducer });
+const rootReducer = combineReducers({ auth: authReducer, user:userReducer });
 
 const store = createStore(
   rootReducer,

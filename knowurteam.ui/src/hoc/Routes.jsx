@@ -4,6 +4,7 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import Home from './../containers/Home/Home';
 import Members from '../containers/Members/Members';
 import Lists from '../containers/Lists/Lists';
+import MemberEdit from '../containers/Members/MemberEdit/MemberEdit';
 
 const Routes = ({ isAuthenticated }) => {
   let appRoutes = (
@@ -19,6 +20,7 @@ const Routes = ({ isAuthenticated }) => {
       <Switch>
         <Route path='/home' component={Home} />
         <Route path='/members' component={Members} />
+        <Route path='/member/edit' component={MemberEdit} />
         <Route path='/lists' component={Lists} />
         <Route path='/' component={Home} />
         <Redirect from='/' exact to='home' />

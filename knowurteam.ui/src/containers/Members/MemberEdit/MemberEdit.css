@@ -1,0 +1,5 @@
+
+li.nav-item:hover {
+  cursor: pointer;
+  color: azure;
+}

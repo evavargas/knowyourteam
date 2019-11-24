@@ -5,7 +5,7 @@ import Routes from './Routes';
 import * as actions from '../store/actions/actionsIndex';
 import { withRouter } from 'react-router-dom';
 
-const Layout = ({ isAuthenticated, decodedToken, onLogout, history }) => {
+const Layout = ({ isAuthenticated, decodedToken, onLogout, history, currentUser }) => {
   const logoutHandler = () => {
     onLogout();
     history.push('/');
@@ -17,6 +17,7 @@ const Layout = ({ isAuthenticated, decodedToken, onLogout, history }) => {
         isAuthenticated={isAuthenticated}
         decodedToken={decodedToken}
         logout={logoutHandler}
+        currentUser={currentUser}
       />
       <main className='container'>
         <Routes isAuthenticated={isAuthenticated} />
@@ -28,7 +29,8 @@ const Layout = ({ isAuthenticated, decodedToken, onLogout, history }) => {
 const mapStateToProps = state => {
   return {
     isAuthenticated: state.auth.token !== null,
-    decodedToken: state.auth.decodedToken
+    decodedToken: state.auth.decodedToken,
+    currentUser:state.auth.currentUser
   };
 };
 

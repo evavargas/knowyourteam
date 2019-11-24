@@ -20,6 +20,7 @@ class Register extends Form {
       gender: '',
       dateOfBirth: new Date(),
       occupation: '',
+      company: '',
       password: '',
       confirmPassword: ''
     },
@@ -32,6 +33,7 @@ class Register extends Form {
       .label('Username'),
     gender: Joi.required(),
     occupation: Joi.string().label('Occupation'),
+    company: Joi.string().label('Company'),
     dateOfBirth: Joi.any(),
     password: Joi.string()
       .min(4)
@@ -132,7 +134,8 @@ class Register extends Form {
             </div>
           </div>
           {this.renderInput('occupation', 'Occupation')}
-          <br />
+          {this.renderInput('company', 'Company')}
+          <label>Create a password</label>
           {this.renderInput('password', 'Password', 'password')}
           {this.renderInput('confirmPassword', 'Confirm Password', 'password')}
           <div className='form-group text-center'>
