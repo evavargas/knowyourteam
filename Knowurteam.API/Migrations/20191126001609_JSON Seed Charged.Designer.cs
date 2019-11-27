@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Knowurteam.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20191121073346_modified model Activity")]
-    partial class modifiedmodelActivity
+    [Migration("20191126001609_JSON Seed Charged")]
+    partial class JSONSeedCharged
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

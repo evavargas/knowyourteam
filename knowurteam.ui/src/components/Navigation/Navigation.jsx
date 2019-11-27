@@ -48,10 +48,11 @@ class Navigation extends Component {
     let userInfoArea = isAuthenticated ? (
       <div className="dropdown">
         <ButtonDropdown isOpen={dropdownOpen} toggle={this.toogleHandler}>
-          <img src={currentUser.photoUrl
+          <img src={
+            currentUser.photoUrl
           ? currentUser.photoUrl 
           : require('../../assets/user.png')}
-           alt={currentUser&& currentUser.username}/>
+           alt={currentUser&& currentUser.username} width="40"/>
           <DropdownToggle caret color="primary">
             Welcome {decodedToken.unique_name}
           </DropdownToggle>

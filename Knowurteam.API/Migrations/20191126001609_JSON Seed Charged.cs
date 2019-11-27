@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Knowurteam.API.Migrations
 {
-    public partial class modifiedmodelActivity : Migration
+    public partial class JSONSeedCharged : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

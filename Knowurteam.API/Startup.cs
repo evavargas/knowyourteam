@@ -16,6 +16,8 @@ using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.Extensions.Hosting;
 using AutoMapper;
+using Newtonsoft.Json;
+using Knowurteam.API.Helpers;
 
 namespace Knowurteam.API
 {
@@ -30,10 +32,16 @@ namespace Knowurteam.API
         public void ConfigureServices(IServiceCollection services)
         {
             //Servicio de Sqlite y cadena de conexion 
-            services.AddDbContext<DataContext>(x => x.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddMvc(option => option.EnableEndpointRouting = false);
+            services.AddDbContext<DataContext>(x => 
+            x.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
+            //Referencia ciclica ignorada
+            services.AddMvc(option =>
+            option.EnableEndpointRouting = false).AddNewtonsoftJson(opt =>
+            opt.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
             //Para habilitar cors, urls distintas
             services.AddCors();
+            //Cloudinary Settings
+            services.Configure<CloudinarySettings>(Configuration.GetSection("CloudinarySettings"));
             //Automapper
             services.AddAutoMapper();
             //Seed del Json que tiene users

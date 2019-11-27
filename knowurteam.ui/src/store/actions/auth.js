@@ -79,7 +79,8 @@ export const login = model => {
       dispatch(
         authSuccess(
           credentials.token,
-          credentials.currentUser,
+          //el campo correspondiente es current user
+          credentials.user,
           authService.getDecodedToken()
         )
       );

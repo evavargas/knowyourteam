@@ -30,7 +30,9 @@ namespace Knowurteam.API.Helpers
             CreateMap<UserForRegisterDto, User>();
             CreateMap<UserForUpdateDto, User>();
             CreateMap<Photo, PhotosForDetailedDto>();
-            //Como si no hiciera nada
+            CreateMap<Photo,PhotoForReturnDto>();
+            CreateMap<PhotoForCreationDto,Photo>();
+            //Added
             CreateMap<ActivitiesForDetailedDto,Activity>();
         }
     }
