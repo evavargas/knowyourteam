@@ -1,9 +1,9 @@
-import http from './httpService';
-import jwtDecode from 'jwt-decode';
+import http from "./httpService";
+import jwtDecode from "jwt-decode";
 
-const apiEndPoint = '/auth';
-const tokenKey = 'token';
-const userKey = 'user';
+const apiEndPoint = "/auth";
+const tokenKey = "token";
+const userKey = "user";
 
 export async function login(model) {
   const { data: credentials } = await http.post(`${apiEndPoint}/login`, model);
@@ -19,6 +19,7 @@ export function trySignUp() {
   let credentials;
   try {
     //Obtener el token
+    //se esta retornando lal variable global. revisar
     const token = getJwt();
     if (token) {
       const decodedToken = getDecodedToken();

@@ -8,7 +8,7 @@ namespace Knowurteam.API.Dtos
         public string Introduction { get; set; }
         public string Occupation { get; set; }
         public string Company { get; set; }
-        public ICollection<Activity> Activities {get; set;}
+
 
     }
 }

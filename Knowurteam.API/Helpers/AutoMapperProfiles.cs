@@ -26,14 +26,14 @@ namespace Knowurteam.API.Helpers
             {
                 opt.MapFrom(d => d.DateofBirth.CalculateAge());
             });
-            
+
             CreateMap<UserForRegisterDto, User>();
             CreateMap<UserForUpdateDto, User>();
             CreateMap<Photo, PhotosForDetailedDto>();
-            CreateMap<Photo,PhotoForReturnDto>();
-            CreateMap<PhotoForCreationDto,Photo>();
+            CreateMap<Photo, PhotoForReturnDto>();
+            CreateMap<PhotoForCreationDto, Photo>();
             //Added
-            CreateMap<ActivitiesForDetailedDto,Activity>();
+            CreateMap<ActivityForCreationDto, Activity>();
         }
     }
 }

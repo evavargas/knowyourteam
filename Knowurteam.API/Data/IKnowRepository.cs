@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using Knowurteam.API.Helpers;
 using Knowurteam.API.Models;
 
 namespace Knowurteam.API.Data
@@ -11,7 +12,8 @@ namespace Knowurteam.API.Data
         Task<bool> SaveAll();
         Task<User> GetUser(int id);
         Task<Photo> GetPhoto(int id);
+        Task<Activity> GetActivity(int id);
         Task<Photo> GetMainPhotoForUser(int userId);
-
+        Task<PagedList<User>> GetUsers(UserParams userParams);
     }
 }

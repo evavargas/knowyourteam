@@ -6,9 +6,12 @@ import { connect } from 'react-redux';
 import Form from '../UI/Form';
 import Calendar from 'react-calendar';
 import Button from '../UI/Button';
+/*
 import auth from '../../services/authService';
 import alertify from 'alertifyjs';
+*/
 import * as actions from '../../store/actions/actionsIndex';
+import './Register.css';
 class Register extends Form {
   state = {
     date: new Date(),

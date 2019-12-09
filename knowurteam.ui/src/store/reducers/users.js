@@ -1,8 +1,10 @@
-import * as actionTypes from '../actions/actionTypes';
-import { updateObject } from '../utility';
+import * as actionTypes from "../actions/actionTypes";
+import { updateObject } from "../utility";
 
 const initialState = {
   user: null,
+  users: null,
+  pagination: null,
   error: null
 };
 
@@ -22,6 +24,31 @@ const userProcessSuccess = (state, action) => {
 };
 
 const userProcessFail = (state, action) => {
+  return updateObject(state, { error: action.error });
+};
+
+const fecthUsersInit = (state, action) => {
+  return updateObject(state, {
+    user: null,
+    users: null,
+    error: null,
+    pagination: null
+  });
+};
+
+const fetchUsersStart = (state, action) => {
+  return updateObject(state, { error: null });
+};
+
+const fetchUsersSuccess = (state, action) => {
+  return updateObject(state, {
+    users: action.users,
+    pagination: action.pagination,
+    error: null
+  });
+};
+
+const fetchUsersFail = (state, action) => {
   return updateObject(state, { error: action.error });
 };
 
@@ -71,8 +98,16 @@ const reducer = (state = initialState, action) => {
       return userProcessSuccess(state, action);
     case actionTypes.DELETE_ACTIVITY_FAIL:
       return userProcessFail(state, action);
-      default:
-    return state;
+    case actionTypes.FETCH_USERS_INIT:
+      return fecthUsersInit(state, action);
+    case actionTypes.FETCH_USERS_START:
+      return fetchUsersStart(state, action);
+    case actionTypes.FETCH_USERS_SUCCESS:
+      return fetchUsersSuccess(state, action);
+    case actionTypes.FETCH_USERS_FAIL:
+      return fetchUsersFail(state, action);
+    default:
+      return state;
   }
 };
 

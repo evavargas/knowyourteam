@@ -1,3 +1,12 @@
-export { login, logout, trySignUp, registerUser } from './auth';
+export { login, logout, trySignUp, registerUser, setMainUser } from "./auth";
 
-export {getUser, updateUser, addPhotoToUser,deletePhoto,setMainPhoto,addActivity,deleteActivity} from './users';
+export {
+  getUser,
+  updateUser,
+  addPhotoToUser,
+  addActivity,
+  deleteActivity,
+  deletePhoto,
+  setMainPhoto,
+  getUsers
+} from "./users";

@@ -30,7 +30,7 @@ const mapStateToProps = state => {
   return {
     isAuthenticated: state.auth.token !== null,
     decodedToken: state.auth.decodedToken,
-    currentUser:state.auth.currentUser
+    currentUser: state.auth.currentUser
   };
 };
 

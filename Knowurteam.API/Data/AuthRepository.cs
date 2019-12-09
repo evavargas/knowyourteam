@@ -12,7 +12,7 @@ namespace Knowurteam.API.Data
         }
         public async Task<User> Login(string username, string password)
         {
-            var user = await _context.Users.Include(p=>p.Photos).FirstOrDefaultAsync(u => u.Username == username);
+            var user = await _context.Users.Include(p => p.Photos).FirstOrDefaultAsync(u => u.Username == username);
 
             if (user == null)
                 return null;

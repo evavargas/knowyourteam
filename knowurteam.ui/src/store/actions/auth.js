@@ -1,6 +1,6 @@
-import * as actionTypes from '../actions/actionTypes';
-import authService from '../../services/authService';
-import alertify from 'alertifyjs';
+import * as actionTypes from "../actions/actionTypes";
+import authService from "../../services/authService";
+import alertify from "alertifyjs";
 
 export const authStart = () => {
   return { type: actionTypes.AUTH_START };
@@ -79,12 +79,12 @@ export const login = model => {
       dispatch(
         authSuccess(
           credentials.token,
-          //el campo correspondiente es current user
+          // El campo se llama user no currentUser
           credentials.user,
           authService.getDecodedToken()
         )
       );
-      alertify.success('Logged in successfully');
+      alertify.success("Logged in successfully");
     } catch (error) {
       if (error) {
         if (error.response) {
@@ -106,7 +106,7 @@ export const registerUser = user => {
     try {
       await authService.register(user);
       dispatch(login(user));
-      alertify.success('Registration successful');
+      alertify.success("Registration successful");
     } catch (error) {
       if (error) {
         if (error.response) {

@@ -1,6 +1,6 @@
-import userService from '../../services/userService';
-import * as actionTypes from './actionTypes';
-import alertify from 'alertifyjs';
+import userService from "../../services/userService";
+import * as actionTypes from "./actionTypes";
+import alertify from "alertifyjs";
 
 export const fetchUserInit = () => {
   return {
@@ -61,7 +61,7 @@ export const addPhotoToUserSuccess = user => {
   };
 };
 
-export const addPhotoToUserFailed = error => {
+export const addPhotoToUserFail = error => {
   return {
     type: actionTypes.ADD_PHOTO_TO_USER_FAIL,
     error: error
@@ -108,6 +108,7 @@ export const setMainPhotoFail = error => {
   };
 };
 
+//Activity
 export const addActivityStart = () => {
   return {
     type: actionTypes.ADD_ACTIVITY_START
@@ -140,13 +141,37 @@ export const deleteActivitySuccess = user => {
     user: user
   };
 };
-
-export const deleteActivityFail = error => {
+export const deleteActivityFail = user => {
   return {
     type: actionTypes.DELETE_ACTIVITY_FAIL,
+    user: user
+  };
+};
+
+export const fetchUsersInit = () => {
+  return { type: actionTypes.FETCH_USERS_INIT };
+};
+
+export const fetchUsersStart = () => {
+  return {
+    type: actionTypes.FETCH_USERS_START
+  };
+};
+
+export const fetchUsersSuccess = (users, pagination) => {
+  return {
+    type: actionTypes.FETCH_USERS_SUCCESS,
+    users: users,
+    pagination: pagination
+  };
+};
+
+export const fetchUsersFail = error => {
+  return {
+    type: actionTypes.FETCH_USERS_FAIL,
     error: error
   };
-}
+};
 
 export const getUser = id => {
   return async dispatch => {
@@ -174,6 +199,50 @@ export const updateUser = (id, user) => {
     }
   };
 };
+export const addActivity = (userId, activity, user) => {
+  return async dispatch => {
+    dispatch(addActivityStart());
+    try {
+      let userActivities = [];
+      userActivities = user.activities;
+      const { data: res } = await userService.addActivity(userId, activity);
+      let activityAdded = {
+        id: res.id,
+        description: res.description,
+        dateofRealization: res.dateofRealization,
+        registrationDate: res.registrationDate
+      };
+      userActivities.push(activityAdded);
+      const newUser = { ...user };
+      newUser.activities = userActivities;
+      dispatch(addActivitySuccess(newUser));
+    } catch (error) {
+      dispatch(addActivityFail(error));
+    }
+  };
+};
+
+export const deleteActivity = (userId, activityId, user) => {
+  return async dispatch => {
+    dispatch(deleteActivityStart());
+    try {
+      let userActivities = [];
+      userActivities = user.activities;
+      await userService.deleteActivity(userId, activityId);
+
+      userActivities.splice(
+        userActivities.findIndex(p => p.id === activityId),
+        1
+      );
+      const newUser = { ...user };
+      newUser.activities = userActivities;
+      dispatch(deleteActivitySuccess(newUser));
+    } catch (error) {
+      dispatch(deleteActivityFail(error));
+    }
+  };
+};
+//Fin activity
 
 export const addPhotoToUser = (userId, photo, user) => {
   return async dispatch => {
@@ -197,10 +266,11 @@ export const addPhotoToUser = (userId, photo, user) => {
       }
       dispatch(addPhotoToUserSuccess(newUser));
     } catch (error) {
-      dispatch(addPhotoToUserFailed(error));
+      dispatch(addPhotoToUserFail(error));
     }
   };
 };
+
 export const deletePhoto = (userId, photoId, user) => {
   return async dispatch => {
     dispatch(deleteUserPhotoStart());
@@ -210,7 +280,10 @@ export const deletePhoto = (userId, photoId, user) => {
 
       await userService.deletePhoto(userId, photoId);
 
-      userPhotos.splice(userPhotos.findIndex(p => p.id === photoId), 1);
+      userPhotos.splice(
+        userPhotos.findIndex(p => p.id === photoId),
+        1
+      );
       const newUser = { ...user };
       newUser.photos = userPhotos;
       dispatch(deleteUserPhotoSuccess(newUser));
@@ -219,49 +292,6 @@ export const deletePhoto = (userId, photoId, user) => {
     }
   };
 };
-//ADD ACTIVITY
-export const addActivity = (userId, activity, user) => {
-  return async dispatch => {
-    dispatch(addActivityStart());
-    try {
-      let userActivities = [];
-      userActivities = user.activities;
-      const { data: res } = await userService.addActivity(userId, activity);
-      let activityAdded = {
-        id: res.id,
-        description: res.description,
-        dateofRealization: res.dateofRealization,
-        registrationDate: res.registrationDate,
-      };
-      userActivities.push(activityAdded);
-      const newUser = { ...user };
-      newUser.activities = userActivities;
-      dispatch(addActivitySuccess(newUser));
-    } catch (error) {
-      dispatch(addActivityFail(error));
-    }
-  };
-};
-//DELETE ACTIVITY
-export const deleteActivity = (userId, activityId, user) => {
-  return async dispatch => {
-    dispatch(deleteActivityStart());
-    try {
-      let userActivities = [];
-      userActivities = user.activities;
-
-      await userService.deleteActivity(userId, activityId);
-
-      userActivities.splice(userActivities.findIndex(p => p.id === activityId), 1);
-      const newUser = { ...user };
-      newUser.activities = userActivities;
-      dispatch(deleteActivitySuccess(newUser));
-    } catch (error) {
-      dispatch(deleteActivityFail(error));
-    }
-  };
-};
-
 
 export const setMainPhoto = (userId, photo, user) => {
   return async dispatch => {
@@ -291,3 +321,24 @@ export const setMainPhoto = (userId, photo, user) => {
     }
   };
 };
+
+export const getUsers = (pageNumber, pageSize, userParams) => {
+  return async dispatch => {
+    dispatch(fetchUserInit());
+    dispatch(fetchUserStart());
+    try {
+      const response = await userService.getUsers(
+        pageNumber,
+        pageSize,
+        userParams
+      );
+
+      const users = response.data;
+      const pagination = JSON.parse(response.headers.pagination);
+      dispatch(fetchUsersSuccess(users, pagination));
+    } catch (error) {
+      dispatch(fetchUsersFail(error));
+    }
+  };
+};
+//ACTIVITIES

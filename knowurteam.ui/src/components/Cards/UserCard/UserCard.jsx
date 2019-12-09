@@ -30,6 +30,12 @@ const UserCard = ({ user, save, type }) => {
       />
       <div className='card-body'>
         <div>
+          <strong>Job information:</strong>
+          <p>
+            {user.occupation}, {user.company}
+          </p>
+        </div>
+        <div>
           <strong>Age:</strong>
           <p>{user.age}</p>
         </div>
@@ -39,10 +45,6 @@ const UserCard = ({ user, save, type }) => {
             <TimeAgo date={user.lastActive} live={false} />
           </p>
         </div>
-        <strong>Last Activity:</strong>
-        <p>
-          {"user.activities.last()"}
-        </p>
         <div>
           <strong>Member since:</strong>
           <p>{userCreated}</p>

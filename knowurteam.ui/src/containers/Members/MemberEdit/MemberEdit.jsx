@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import {
   TabContent,
   TabPane,
@@ -7,24 +7,25 @@ import {
   NavLink,
   Row,
   Col
-} from "reactstrap";
-import classnames from "classnames";
-import { connect } from "react-redux";
-import * as actions from "../../../store/actions/actionsIndex";
-import alertify from "alertifyjs";
-
-import "./MemberEdit.css";
-import UserCard from "../../../components/Cards/UserCard/UserCard";
-import EditProfile from "./EditProfile";
-
+} from 'reactstrap';
+import classnames from 'classnames';
+import { connect } from 'react-redux';
+import * as actions from '../../../store/actions/actionsIndex';
+import alertify from 'alertifyjs';
+import './MemberEdit.css';
+//My User
+import UserCard from '../../../components/Cards/UserCard/UserCard';
+//Editores
+import EditProfile from './EditProfile';
+import PhotoEditor from '../PhotoEditor/PhotoEditor';
+import ActivityEditor from '../ActivityEditor/ActivityEditor';
 class MemberEdit extends Component {
   state = {
-    activeTab: "1",
+    activeTab: '1',
     userInfo: {
-      introduction: "",
-      occupation: "",
-      actvities: [],
-      company: ""
+      introduction: '',
+      occupation: '',
+      company: '',
     }
   };
 
@@ -35,10 +36,9 @@ class MemberEdit extends Component {
     const userInfo = { ...this.state.userInfo };
 
     if (user) {
-      userInfo.introduction = !user.introduction ? "" : user.introduction;
-      userInfo.occupation = !user.occupation ? "" : user.occupation;
-      userInfo.company = !user.company ? "" : user.company;
-      //userInfo.actvities = !user.actvities ? [] : user.actvities;
+      userInfo.introduction = !user.introduction ? '' : user.introduction;
+      userInfo.occupation = !user.occupation ? '' : user.occupation;
+      userInfo.company = !user.company ? '' : user.company;
       this.setState({ userInfo });
     }
   }
@@ -56,12 +56,11 @@ class MemberEdit extends Component {
     user.introduction = updatedUser.introduction;
     user.occupation = updatedUser.occupation;
     user.company = updatedUser.company;
-    //user.actvities = updatedUser.actvities;
 
     this.props.onUpdateUser(currentUser.nameid, user).then(() => {
       if (this.props.error)
-        alertify.warning("You need to modify some fields before update");
-      else alertify.success("Profile updated succesfully");
+        alertify.warning('You need to modify some fields before update');
+      else alertify.success('Profile updated succesfully');
     });
   };
 
@@ -80,7 +79,7 @@ class MemberEdit extends Component {
     let editProfile = <p>Edit Profile Area</p>;
     if (user) {
       userCard = (
-        <UserCard user={user} type="save" save={this.handleUpdateUser} />
+        <UserCard user={user} type='save' save={this.handleUpdateUser} />
       );
       editProfile = (
         <EditProfile
@@ -90,29 +89,30 @@ class MemberEdit extends Component {
         />
       );
     }
+
     return (
-      <div className="container mt-4">
-        <div className="row">
-          <div className="col-sm-4">
+      <div className='container mt-4'>
+        <div className='row'>
+          <div className='col-sm-4'>
             <h1>Your profile</h1>
           </div>
         </div>
-        <div className="row">
-          <div className="col-sm-4">{userCard}</div>
-          <div className="col-sm-8">
+        <div className='row'>
+          <div className='col-sm-4'>{userCard}</div>
+          <div className='col-sm-8'>
             <Nav tabs>
               <NavItem>
                 <NavLink
                   className={classnames(
                     {
-                      active: this.state.activeTab === "1"
+                      active: this.state.activeTab === '1'
                     },
                     {
-                      "navlink-active": this.state.activeTab === "1"
+                      'navlink-active': this.state.activeTab === '1'
                     }
                   )}
                   onClick={() => {
-                    this.toggleHandler("1");
+                    this.toggleHandler('1');
                   }}
                 >
                   Edit Profile
@@ -122,14 +122,14 @@ class MemberEdit extends Component {
                 <NavLink
                   className={classnames(
                     {
-                      active: this.state.activeTab === "2"
+                      active: this.state.activeTab === '2'
                     },
                     {
-                      "navlink-active": this.state.activeTab === "2"
+                      'navlink-active': this.state.activeTab === '2'
                     }
                   )}
                   onClick={() => {
-                    this.toggleHandler("2");
+                    this.toggleHandler('2');
                   }}
                 >
                   Edit Photos
@@ -139,14 +139,14 @@ class MemberEdit extends Component {
                 <NavLink
                   className={classnames(
                     {
-                      active: this.state.activeTab === "3"
+                      active: this.state.activeTab === '3'
                     },
                     {
-                      "navlink-active": this.state.activeTab === "3"
+                      'navlink-active': this.state.activeTab === '3'
                     }
                   )}
                   onClick={() => {
-                    this.toggleHandler("3");
+                    this.toggleHandler('3');
                   }}
                 >
                   Edit Activities
@@ -154,19 +154,23 @@ class MemberEdit extends Component {
               </NavItem>
             </Nav>
             <TabContent activeTab={this.state.activeTab}>
-              <TabPane tabId="1">
+              <TabPane tabId='1'>
                 <Row>
-                  <Col sm="12">{editProfile}</Col>
+                  <Col sm='12'>{editProfile}</Col>
                 </Row>
               </TabPane>
-              <TabPane tabId="2">
+              <TabPane tabId='2'>
                 <Row>
-                  <Col sm="12">{"Photo Editor"}</Col>
+                  <Col sm='12'>
+                    <PhotoEditor />
+                  </Col>
                 </Row>
               </TabPane>
-              <TabPane tabId="3">
+              <TabPane tabId='3'>
                 <Row>
-                  <Col sm="12">{"Activity Editor"}</Col>
+                  <Col sm='12'>
+                    <ActivityEditor />
+                  </Col>
                 </Row>
               </TabPane>
             </TabContent>
@@ -192,4 +196,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(MemberEdit);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(MemberEdit);

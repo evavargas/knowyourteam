@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 
 import Layout from "./hoc/Layout";
 import * as actions from "./store/actions/actionsIndex";
-import auth from "./services/authService";
+//import auth from "./services/authService";
 
 class App extends Component {
   componentDidMount() {
@@ -26,7 +26,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(
-  null,
-  mapDispatchToProps
-)(App);
+export default connect(null, mapDispatchToProps)(App);

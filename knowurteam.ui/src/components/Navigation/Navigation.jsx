@@ -33,12 +33,7 @@ class Navigation extends Component {
         <Nav navbar>
           <NavItem>
             <NavLink tag={NavLinkRouter} exact to="/members">
-              Matches
-            </NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink tag={NavLinkRouter} exact to="/lists">
-              Clubmates
+              Members
             </NavLink>
           </NavItem>
         </Nav>
@@ -50,9 +45,9 @@ class Navigation extends Component {
         <ButtonDropdown isOpen={dropdownOpen} toggle={this.toogleHandler}>
           <img src={
             currentUser.photoUrl
-          ? currentUser.photoUrl 
-          : require('../../assets/user.png')}
-           alt={currentUser&& currentUser.username} width="40"/>
+              ? currentUser.photoUrl
+              : require('../../assets/user.png')}
+            alt={currentUser && currentUser.username} width="40" />
           <DropdownToggle caret color="primary">
             Welcome {decodedToken.unique_name}
           </DropdownToggle>
@@ -60,7 +55,7 @@ class Navigation extends Component {
             <DropdownItem tag={NavLinkRouter} exact to="/member/edit">
               <i className="fa fa-user"></i>Edit Profile
             </DropdownItem>
-            <DropdownItem  divider />
+            <DropdownItem divider />
             <DropdownItem onClick={logout}>
               <i className="fa fa-sign-out"></i>Logout
             </DropdownItem>
@@ -68,8 +63,8 @@ class Navigation extends Component {
         </ButtonDropdown>
       </div>
     ) : (
-      <Login />
-    );
+        <Login />
+      );
     return (
       <Fragment>
         <Navbar

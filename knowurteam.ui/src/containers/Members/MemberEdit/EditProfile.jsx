@@ -8,14 +8,24 @@ const EditProfile = ({ user, submit, handleChange }) => {
       <textarea
         name='introduction'
         id=''
-        rows='6'
+        rows='4'
         className='form-control'
         value={user.introduction}
         onChange={handleChange}
       />
-      <h4>Details:</h4>
+      <h4>Job Details:</h4>
       <div className='form-inline'>
-        <label htmlFor='company' style={{ margin: '0 3px 0 0' }}>
+        <label htmlFor='occupation' style={{ margin: '0 3px 0 0' }}>
+          Occupation:
+        </label>
+        <GenericInput
+          type='text'
+          classes='form-control'
+          name='occupation'
+          value={user.occupation}
+          onChange={handleChange}
+        />
+        <label htmlFor='company' style={{ margin: '0 3px 0 8px' }}>
           Company:
         </label>
         <GenericInput
@@ -25,19 +35,8 @@ const EditProfile = ({ user, submit, handleChange }) => {
           value={user.company}
           onChange={handleChange}
         />
-        <label htmlFor='occupation' style={{ margin: '0 3px 0 8px' }}>
-        Occupation
-        </label>
-        <GenericInput
-          type='text'
-          classes='form-control'
-          name='occupation'
-          value={user.occupation}
-          onChange={handleChange}
-        />
       </div>
     </form>
   );
 };
-
 export default EditProfile;

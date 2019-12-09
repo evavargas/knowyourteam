@@ -11,7 +11,6 @@ namespace Knowurteam.API.Dtos
         public int Age { get; set; }
         public DateTime Created { get; set; }
         public DateTime LastActive { get; set; }
-        public string PhotoUrl { get; set; 
-        }
+        public string PhotoUrl { get; set; }
     }
 }

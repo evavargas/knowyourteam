@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using Knowurteam.API.Models;
 using Newtonsoft.Json;
-
 namespace Knowurteam.API.Data
 {
     public class Seed
@@ -11,7 +10,6 @@ namespace Knowurteam.API.Data
         {
             _context = context;
         }
-
         public void SeedUsers()
         {
             var userData = System.IO.File.ReadAllText("Data/Users.json");
@@ -29,10 +27,8 @@ namespace Knowurteam.API.Data
 
                 _context.Users.Add(user);
             }
-
             _context.SaveChanges();
         }
-
         private void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
         {
             using (var hmac = new System.Security.Cryptography.HMACSHA512())

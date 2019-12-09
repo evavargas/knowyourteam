@@ -7,7 +7,7 @@ namespace Knowurteam.API.Dtos
         [Required]
         public string Username { get; set; }
 
-        [StringLength(10, MinimumLength = 4, ErrorMessage = "You must specify a password between 4 and 8 characters")]
+        [StringLength(10, MinimumLength = 4, ErrorMessage = "You must specify a password between 4 and 10 characters")]
         public string Password { get; set; }
         [Required]
         public string Gender { get; set; }
