@@ -143,8 +143,8 @@ class Register extends Form {
           {this.renderInput('confirmPassword', 'Confirm Password', 'password')}
           <div className='form-group text-center'>
             {this.renderButton('Register', 'btn-outline-primary')}
-            <Button bsClasses='btn-outline-warning' 
-            clicked={this.props.onCancel}>
+            <Button bsClasses='btn-outline-warning'
+              clicked={this.props.onCancel}>
               Cancel
             </Button>
           </div>

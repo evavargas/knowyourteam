@@ -31,24 +31,16 @@ namespace Knowurteam.API.Controllers
             var value = await _context.Values.FirstOrDefaultAsync(p => p.Id == id);
             return Ok(value);
         }
-        /* //POST api/values
+// POST api/values
         [HttpPost]
+        public void Post([FromBody] string value) { }
 
-        public void Post([FromBody] string value)
-        {
-        }
-        //PUT api/values/5
+        // PUT api/values/5
         [HttpPut("{id}")]
+        public void Put(int id, [FromBody] string value) { }
 
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        //DELETE api/values/5
+        // DELETE api/values/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
-         */
+        public void Delete(int id) { }
     }
 }

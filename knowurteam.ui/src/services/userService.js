@@ -44,8 +44,8 @@ export function addPhoto(userId, photo) {
   return http.post(`${userUrl(userId)}/photos`, photo);
 }
 //Activities
-export function deleteActivity(userId, id) {
-  return http.delete(`${userUrl(userId)}/activities/${id}`);
+export function deleteActivity(userId, activityId) {
+  return http.delete(`${userUrl(userId)}/activities/${activityId}`);
 }
 
 export function addActivity(userId, activity) {

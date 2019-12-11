@@ -1,31 +1,23 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import './ActivityGallery.css';
+import MemberGallery from './MemberGallery';
 
 const ActivityGallery = ({ activities }) => {
-  let items = [];
-  activities.forEach(activity => {
-    let item = {
-      image: 'activity.png',
-      description: activity.description,
-      dateofRealization: activity.dateofRealization
-    };
-    items.push(item);
-  });
-  //header: 'findyourMatch.com'
-
+  const { user } = this.props;
+  let memberGallery = <p>Te user Has no activities</p>
+  if (user) {
+    memberGallery = user.activities.map(activity => (
+      <MemberGallery
+        key={activity.id}
+        activity={activity}
+      />
+    ));
+  }
   return (
-    <div className='card'>
+    <Fragment>
       <h1>Activities</h1>
-      <ul>
-        {items.map(activity=>
-          <li>
-<span>{activity.description}</span>
-<span>{activity.date}</span>
-          </li>
-          )
-        }
-      </ul>
-    </div>
+      <div> className='row'>{memberGallery}</div>
+    </Fragment>
   );
 };
 

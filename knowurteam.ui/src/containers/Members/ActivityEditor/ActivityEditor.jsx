@@ -1,59 +1,64 @@
 import React, { Component } from 'react';
+import Joi from 'joi-browser';
 import alertify from 'alertifyjs';
 import { connect } from 'react-redux';
 import * as actions from '../../../store/actions/actionsIndex';
 import MemberActivity from '../MemberActivity/MemberActivity';
+import Calendar from 'react-calendar';
 //import './ActivityEditor.css';
 import Button from './../../../components/UI/Button';
-import GenericInput from './../../../components/UI/GenericInput';
+import Form from '../../../components/UI/Form';
 
-//largo de la cadena
-export class ActivityEditor extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            formatDate: '',
-            activity: {
-                description: '',
-                dateOfRealization: new Date(),
-                registrationDate: new Date()
-            },
-            errors: {}
-        };
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-    }
-    handleChange(event) {
-        this.setState({ value: event.target.value });
-    }
-    handleSubmit(event) {
-
-        event.preventDefault();
-    }
-
-    handleUploadActivity = () => {
+export class ActivityEditor extends Form {
+    state = {
+        formatDate: '',
+        data: {
+            description: '',
+            dateOfRealization: new Date(),
+            registrationDate: new Date()
+        },
+        errors: {}
+    };
+    schema = {
+        description: Joi.string()
+            .min(4)
+            .max(20)
+            .required()
+            .label('Description'),
+        dateOfRealization: Joi.any()
+    };
+    handleOptionChange = e => {
+        let v = e.target.value;
+        this.setState({ selectedOption: v, v });
+    };
+    handleOnChangeDate = date => {
+        this.setState({ date, formatDate: date.toLocaleDateString() });
+    };
+    doSubmit = async () => {
         const {
             decodedToken,
             user,
             currentUser,
-            onAddActivity,
-            onSetMainUser
+            onAddActivity //why?
         } = this.props;
-        const { activityForUpload } = this.state.activity;
-        onAddActivity(decodedToken.nameid, activityForUpload, user).then(() => {
-            let updateCurrentUser = { ...currentUser };
-            onSetMainUser(updateCurrentUser);
-        });
-        this.state.setState({ description: '', dateOfRealization: '' });
+        let activity = { ...this.state.data };
+        alertify.confirm(
+            'Wait... Before continue',
+            'Are you sure you want to add this activity?',
+            async () => {
+                await onAddActivity(decodedToken.nameid, activity, user);
+//                if (this.props.error) alertify.warning(this.props.error);
+//                else alertify.succes('Activity has been deleted');
+            },
+            () => { }
+            
+        );
     };
-
     handleDeleteActivity = activityId => {
         const { decodedToken, user, onDeleteActivity } = this.props;
-
         alertify.defaults.theme.ok = 'btn btn-primary';
         alertify.defaults.theme.cancel = 'btn btn-warning';
         alertify.confirm(
-            'Wait... Before continue',
             'Are you sure you want to delete this activity?',
             async () => {
                 await onDeleteActivity(decodedToken.nameid, activityId, user);
@@ -65,41 +70,32 @@ export class ActivityEditor extends Component {
     };
 
     render() {
-        const { ...activity } = this.state.activity;
+        const { ...activity } = this.state.data;
         const { user } = this.props;
         let activityZone = (
             <div>
                 <h4>Activity to Upload</h4>
                 <div className='form-inline'>
                     <form onSubmit={this.handleSubmit}>
-                        <label htmlFor='description' style={{ margin: '0 3px 0 0' }}>
-                            Description:
-                        </label>
-                        <GenericInput
-                            type='text'
-                            classes='form-control'
-                            name='Activity'
-                            value={activity.description}
-                            onChange={this.handleChange}
+                        {this.renderInput('description', 'Description')}
+                        <label>Date of realization:</label>
+                        <Calendar
+                            onChange={this.handleOnChangeDate}
+                            value={this.state.data.dateOfRealization}
                         />
-                        <label htmlFor='date' style={{ margin: '0 3px 0 8px' }}>
-                            Date of realization:
-                            </label>
-                        <GenericInput
+                        <input
                             type='text'
-                            classes='form-control'
-                            name='Date'
-                            value={activity.dateOfRealization}
-                            onChange={this.handleChange}
+                            className='form-control'
+                            value={this.state.formatDate}
+                            readOnly
                         />
                         <Button
                             type='button'
                             bsClasses='btn btn-succes btn-s'
-                            disabled={activity.description.length === 0}
-                            clicked={this.handleUploadActivity}
-                        >
-                            <span className='fa fa-upload' />Upload Activity
-                </Button>
+                            disabled={activity.description.length <= 4}
+                            clicked={this.doSubmit}
+                        ><span className='fa fa-upload' />Upload Activity
+                        </Button>
                     </form>
                 </div>
             </div>
@@ -146,7 +142,6 @@ const mapDispatchToProps = dispatch => {
             dispatch(actions.addActivity(id, activity, user)),
         onDeleteActivity: (id, activityId, user) =>
             dispatch(actions.deleteActivity(id, activityId, user)),
-        onSetMainUser: currentUser => dispatch(actions.setMainUser(currentUser))
     };
 };
 export default connect(

@@ -141,10 +141,10 @@ export const deleteActivitySuccess = user => {
     user: user
   };
 };
-export const deleteActivityFail = user => {
+export const deleteActivityFail = error => {
   return {
     type: actionTypes.DELETE_ACTIVITY_FAIL,
-    user: user
+    error: error
   };
 };
 
@@ -207,7 +207,6 @@ export const addActivity = (userId, activity, user) => {
       userActivities = user.activities;
       const { data: res } = await userService.addActivity(userId, activity);
       let activityAdded = {
-        id: res.id,
         description: res.description,
         dateofRealization: res.dateofRealization,
         registrationDate: res.registrationDate
@@ -341,4 +340,4 @@ export const getUsers = (pageNumber, pageSize, userParams) => {
     }
   };
 };
-//ACTIVITIES
+

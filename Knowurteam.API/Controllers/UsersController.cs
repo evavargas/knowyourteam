@@ -3,35 +3,32 @@ using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using AutoMapper;
+using Knowurteam.API.Data;
+using Knowurteam.API.Dtos;
 using Knowurteam.API.Helpers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Knowurteam.API.Data;
-using Knowurteam.API.Dtos;
 
-namespace Knowurteam.API.Controllers
-{
+namespace Knowurteam.API.Controllers {
     [Authorize]
-    [Route("api/[controller]")]
+    [Route ("api/[controller]")]
     [ApiController]
-    public class UsersController : ControllerBase
-    {
+    public class UsersController : ControllerBase {
         private readonly IKnowRepository _repository;
         private readonly IMapper _mapper;
-        public UsersController(IKnowRepository repository, IMapper mapper)
-        {
+        public UsersController (IKnowRepository repository, IMapper mapper) {
             _mapper = mapper;
             _repository = repository;
         }
 
-        [HttpGet("{id}", Name = "GetUser")]
-        public async Task<IActionResult> GetUser(int id)
-        {
-            var user = await _repository.GetUser(id);
-            var userToReturn = _mapper.Map<UserForDetailedDto>(user);
-            return Ok(userToReturn);
+        [HttpGet ("{id}", Name = "GetUser")]
+        public async Task<IActionResult> GetUser (int id) {
+            var user = await _repository.GetUser (id);
+            var userToReturn = _mapper.Map<UserForDetailedDto> (user);
+            return Ok (userToReturn);
         }
-        [HttpGet]
+
+[HttpGet]
         public async Task<IActionResult> GetUsers([FromQuery]UserParams userParams)
         {
             var currentUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
