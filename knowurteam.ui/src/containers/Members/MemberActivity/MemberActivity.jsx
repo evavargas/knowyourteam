@@ -1,13 +1,11 @@
 import React from 'react';
-import classnames from 'classnames';
-
 import Button from '../../../components/UI/Button';
 import './MemberActivity.css';
 
 const MemberActivity = ({ activity, deleteActivity }) => {
 
   return (
-    <li>
+    <li className='item'>
       <div className='description'>
         <span className='item-description' >{activity.description}</span>
         <span className='item-date' >{activity.dateofRealization}</span>
@@ -21,8 +19,6 @@ const MemberActivity = ({ activity, deleteActivity }) => {
       </Button>
     </li>
   );
-
-
 };
 
 export default MemberActivity;

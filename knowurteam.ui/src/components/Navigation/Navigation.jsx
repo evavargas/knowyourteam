@@ -15,6 +15,7 @@ import {
 import { NavLink as NavLinkRouter } from "react-router-dom";
 import Login from "./Login";
 import { withRouter } from "react-router-dom";
+import './Navigation.css';
 class Navigation extends Component {
   state = {
     dropdownOpen: false
@@ -43,11 +44,15 @@ class Navigation extends Component {
     let userInfoArea = isAuthenticated ? (
       <div className="dropdown">
         <ButtonDropdown isOpen={dropdownOpen} toggle={this.toogleHandler}>
-          <img src={
-            currentUser.photoUrl
-              ? currentUser.photoUrl
-              : require('../../assets/user.png')}
-            alt={currentUser && currentUser.username} width="40" />
+        <img
+            className='UserPhoto'
+            src={
+              currentUser.photoUrl
+                ? currentUser.photoUrl
+                : require('../../assets/user.png')
+            }
+            alt={currentUser && currentUser.username}
+          />
           <DropdownToggle caret color="primary">
             Welcome {decodedToken.unique_name}
           </DropdownToggle>

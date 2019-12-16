@@ -26,7 +26,7 @@ class Members extends Component {
         display: 'Females'
       },
       {
-        value: 'others',
+        value: 'other',
         display: 'Others'
       }
     ],
@@ -41,7 +41,7 @@ class Members extends Component {
     const { currentUser, onGetUsers } = this.props;
 
     const userParams = { ...this.state.userParams };
-    userParams.gender = currentUser.gender === 'female' ? 'male' : 'female'; //other
+    userParams.gender = currentUser.gender === 'female' ? 'male' : 'male'?'female': 'other';
     userParams.minAge = 18;
     userParams.maxAge = 99;
     userParams.orderBy = 'lastActive';

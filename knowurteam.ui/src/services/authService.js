@@ -19,12 +19,11 @@ export function trySignUp() {
   let credentials;
   try {
     //Obtener el token
-    //se esta retornando lal variable global. revisar
     const token = getJwt();
     if (token) {
       const decodedToken = getDecodedToken();
       const currentUser = JSON.parse(getCurrentUser());
-      const credentials = {
+      credentials = {
         token,
         decodedToken,
         currentUser

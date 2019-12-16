@@ -20,8 +20,8 @@ const Routes = ({ isAuthenticated }) => {
     appRoutes = (
       <Switch>
         <Route path='/home' component={Home} />
-        <Route path='/members' component={Members} />
         <Route path='/members/:id' component={MemberDetail} />
+        <Route path='/members' component={Members} />
         <Route path='/member/edit' component={MemberEdit} />
         <Route path='/lists' component={Lists} />
         <Route path='/' component={Home} />

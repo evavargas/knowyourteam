@@ -5,7 +5,13 @@ import Routes from './Routes';
 import * as actions from '../store/actions/actionsIndex';
 import { withRouter } from 'react-router-dom';
 
-const Layout = ({ isAuthenticated, decodedToken, onLogout, history, currentUser }) => {
+const Layout = ({
+  isAuthenticated,
+  decodedToken,
+  onLogout,
+  history,
+  currentUser
+}) => {
   const logoutHandler = () => {
     onLogout();
     history.push('/');

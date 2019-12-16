@@ -25,7 +25,8 @@ class Home extends Component {
     ) : (
     <div style={{textAlign:'center'}}>
         <h1>Get more than clubmates, find friends</h1>
-        <p className='lead'>Come on. All you need to do is sign up</p>
+        <p className='lead'>
+          Come on. All you need to do is sign up</p>
         <div className='text-center'>
             <Button bsClasses='btn-outline-primary btn-lg mr-2' clicked={this.registerToogleHandler} >Register</Button>
             <Button bsClasses='btn-outline-info btn-lg mr-2'>Learn More</Button>

@@ -279,10 +279,7 @@ export const deletePhoto = (userId, photoId, user) => {
 
       await userService.deletePhoto(userId, photoId);
 
-      userPhotos.splice(
-        userPhotos.findIndex(p => p.id === photoId),
-        1
-      );
+      userPhotos.splice(userPhotos.findIndex(p => p.id === photoId),1);
       const newUser = { ...user };
       newUser.photos = userPhotos;
       dispatch(deleteUserPhotoSuccess(newUser));
@@ -340,4 +337,3 @@ export const getUsers = (pageNumber, pageSize, userParams) => {
     }
   };
 };
-

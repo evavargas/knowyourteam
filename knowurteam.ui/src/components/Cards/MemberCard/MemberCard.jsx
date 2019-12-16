@@ -25,9 +25,9 @@ const MemberCard = ({ user, toDetail }) => {
       </div>
       <div className='card-body p-1'>
         <h6 className='card-title text-center mb-1'>
-          <i className='fa fa-user' /> {user.occupation},{user.age}
+          <i className='fa fa-user' /> {user.username},{user.age}
         </h6>
-        <p className='card-text text-muted text-center'>{user.company}</p>
+        <p className='card-text text-muted text-center'>{user.occupation}</p>
       </div>
     </div>
   );
