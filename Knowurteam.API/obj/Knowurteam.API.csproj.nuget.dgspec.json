@@ -1,21 +1,18 @@
 {
   "format": 1,
   "restore": {
-    "D:\\KYT\\Knowurteam.API\\Knowurteam.API.csproj": {}
+    "C:\\Users\\EVA MARIA\\Documents\\kyt\\knowyourteam\\Knowurteam.API\\Knowurteam.API.csproj": {}
   },
   "projects": {
-    "D:\\KYT\\Knowurteam.API\\Knowurteam.API.csproj": {
+    "C:\\Users\\EVA MARIA\\Documents\\kyt\\knowyourteam\\Knowurteam.API\\Knowurteam.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\KYT\\Knowurteam.API\\Knowurteam.API.csproj",
+        "projectUniqueName": "C:\\Users\\EVA MARIA\\Documents\\kyt\\knowyourteam\\Knowurteam.API\\Knowurteam.API.csproj",
         "projectName": "Knowurteam.API",
-        "projectPath": "D:\\KYT\\Knowurteam.API\\Knowurteam.API.csproj",
+        "projectPath": "C:\\Users\\EVA MARIA\\Documents\\kyt\\knowyourteam\\Knowurteam.API\\Knowurteam.API.csproj",
         "packagesPath": "C:\\Users\\EVA MARIA\\.nuget\\packages\\",
-        "outputPath": "D:\\KYT\\Knowurteam.API\\obj\\",
+        "outputPath": "C:\\Users\\EVA MARIA\\Documents\\kyt\\knowyourteam\\Knowurteam.API\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
           "C:\\Users\\EVA MARIA\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
@@ -61,17 +58,17 @@
               "target": "Package",
               "version": "[3.0.0, )"
             },
-            "Microsoft.AspNetCore.Razor.Design": {
+            "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation": {
               "target": "Package",
-              "version": "[2.2.0, )"
+              "version": "[3.0.0, )"
             },
-            "Microsoft.EntityFrameworkCore.Sqlite": {
+            "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[2.2.4, )"
+              "version": "[3.0.0, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
               "target": "Package",
-              "version": "[2.2.4, )"
+              "version": "[3.0.0, )"
             }
           },
           "imports": [
@@ -92,7 +89,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.103\\RuntimeIdentifierGraph.json"
         }
       }
     }
